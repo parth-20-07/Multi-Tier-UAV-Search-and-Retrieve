@@ -1,0 +1,6 @@
+**/desktop.ini
+/.vscode
+log/*
+build/*
+install/*
+.obsidian/
