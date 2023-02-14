@@ -2,12 +2,6 @@
 
 - [Introduction](#introduction)
 - [How to setup the project](#how-to-setup-the-project)
-    - [Install dependencies](#install-dependencies)
-- [How to use the project](#how-to-use-the-project)
-    - [Assignment 1](#assignment-1)
-- [Understanding the Assignment](#understanding-the-assignment)
-    - [Assignment 1](#assignment-1)
-        - [file 1](#file-1)
 - [Designer Details](#designer-details)
 - [License](#license)
 
@@ -17,18 +11,12 @@
 
 # How to setup the project
 
-## Install dependencies
+## Install Essential Softwares
 
-# How to use the project
-
-## Assignment 1
-
-# Understanding the Assignment
-
-## Assignment 1
-
-### file 1
-
+- Install [ROS 1 Noetic](./Docs/Install%20ROS%20Noetic.md).
+- Setup [Crazyflie 2.0 in Gazebo](./Docs/Gazebo-Crazyflie.md).
+- Setup [Unity](./Docs/Setup%20Unity.md).
+- Install [Visual Studio Code](./Docs/VSCode.md).
 
 
 🥳 _Ladies and Gentlemen!!_ \
@@ -38,8 +26,8 @@
 # Designer Details
 
 - Designed for:
-  - Company Name
-  - Project Name
+  - Worcester Polytechnic Institute
+  - RBE550-S23-S01: Motion Planning (Online) - Final Project
 - Designed by:
   - [Parth Patel](mailto:parth.pmech@gmail.com)
 
@@ -47,7 +35,7 @@
 
 This project is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) (see [LICENSE.md](LICENSE.md)).
 
-Copyright 2022 Parth Patel
+Copyright 2023 Parth Patel
 
 Licensed under the GNU General Public License, Version 3.0 (the "License"); you may not use this file except in compliance with the License.
 
