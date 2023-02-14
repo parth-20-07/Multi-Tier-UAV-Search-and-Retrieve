@@ -2,6 +2,7 @@
 
 - [Introduction](#introduction)
 - [How to setup the project](#how-to-setup-the-project)
+    - [Install Essential Softwares[^1]](#install-essential-softwares%5E1)
 - [Designer Details](#designer-details)
 - [License](#license)
 
@@ -11,7 +12,9 @@
 
 # How to setup the project
 
-## Install Essential Softwares
+## Install Essential Softwares[^1]
+
+[^1]: All the Softwares are installed for Ubuntu 20.04 LTS. Though most of the softwares are cross platform, we haven't built or tested them for it. You can port it to the system of your liking but maybe try to debug the issues with loads of help from [google](www.google.com).
 
 - Install [ROS 1 Noetic](./Docs/Install%20ROS%20Noetic.md).
 - Setup [Crazyflie 2.0 in Gazebo](./Docs/Gazebo-Crazyflie.md).

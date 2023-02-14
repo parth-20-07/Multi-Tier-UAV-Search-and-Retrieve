@@ -16,4 +16,4 @@ Yes, I know. You can use any other IDE that you may like but I love VS Code. _So
    8. [Unity Code Snippets](https://marketplace.visualstudio.com/items?itemName=kleber-swf.unity-code-snippets)
    9. [URDF](https://marketplace.visualstudio.com/items?itemName=smilerobotics.urdf&ssr=false#review-details)
 
-[^1]: *This Extensions are not neccesary but will surely make your life a bit easier when you are on the verge of unaliving yourself for picking up a project like this!!! Believe me... you are reading this ReadMe just due to their help!! 👼*
+[^1]: *This Extensions are not necessary but will surely make your life a bit easier when you are on the verge of unaliving yourself for picking up a project like this!!! Believe me... you are reading this ReadMe just due to their help!! 👼*
