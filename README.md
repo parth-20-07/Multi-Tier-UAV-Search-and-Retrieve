@@ -18,13 +18,13 @@
 
 - Install [ROS 1 Noetic](./Docs/Install%20ROS%20Noetic.md).
 - Setup [Crazyflie 2.0 in Gazebo](./Docs/Gazebo-Crazyflie.md).
-- Setup [Unity](./Docs/Setup%20Unity.md).
+- Setup [Unity](./Docs/Setup%20Unity.md) and [install all the essential packages](./Docs/Install%20Essential%20Unity%20Packages.md).
 - Install [Visual Studio Code](./Docs/VSCode.md).
 
 
-🥳 _Ladies and Gentlemen!!_ \
+<!-- 🥳 _Ladies and Gentlemen!!_ \
 🥳 _Hope you have a good day!!_\
-🥳 _We are all done with the project here!!_
+🥳 _We are all done with the project here!!_ -->
 
 # Designer Details
 
