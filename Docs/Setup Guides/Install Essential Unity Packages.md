@@ -3,7 +3,7 @@
 
 - [Post Processing V 3.2.2](#post-processing-v-322)
 - [Input System V 1.4.4](#input-system-v-144)
-- [Link ROS and Unity](#link-ros-and-unity)
+- [ROS-TCP Connector V 0.7.0](#ros-tcp-connector-v-070)
 - [Resources](#resources)
 
 <!-- /TOC -->
@@ -22,18 +22,14 @@ Complete guide to installing Input System Package can be found [here](https://do
 
 📓*You will need to restart the Unity Engine to enable backward compatibility in the system.*
 
-# Link ROS and Unity
+# ROS-TCP Connector V 0.7.0
 
-- Install [Unity Robotics Packages](https://github.com/Unity-Technologies/Unity-Robotics-Hub/blob/main/tutorials/quick_setup.md):
-    - [ROS-TCP Connector](https://github.com/Unity-Technologies/ROS-TCP-Connector)
-    - [URDF Importer](https://github.com/Unity-Technologies/URDF-Importer)
+We use this package to setup a link to share data between Unity and ROS nodes.
+
+Complete guide to installing Input System Package can be found [here](https://github.com/Unity-Technologies/ROS-TCP-Connector)
 
 # Resources
 
-- Simulating Robots with ROS and Unity:
-
-    - [Website](https://resources.unity.com/unitenow/onlinesessions/simulating-robots-with-ros-and-unity)
-    - Video:
-    
-        [![Simulating Robots with ROS and Unity](https://img.youtube.com/vi/6Vj23flmKLs/0.jpg)](https://www.youtube.com/watch?v=6Vj23flmKLs)
+- [Simulating Robots with ROS and Unity](https://resources.unity.com/unitenow/onlinesessions/simulating-robots-with-ros-and-unity):
+    [![Simulating Robots with ROS and Unity](https://img.youtube.com/vi/6Vj23flmKLs/0.jpg)](https://www.youtube.com/watch?v=6Vj23flmKLs)
 - Github: [Unity-Technologies/Unity-Robotics-Hub](https://github.com/Unity-Technologies/Unity-Robotics-Hub)
