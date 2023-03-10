@@ -20,7 +20,7 @@ public class MotorController : MonoBehaviour, IEngine
 
     [Header("Propeller Properties")]
     private Transform propeller;//GameObject Propeller on which the bounding box and the force is applied
-    [SerializeField] protected float lift_force_per_rpm = 0.1f;//Ratio of the lift vs rotor rpm. Actually it is a curve but is considered straight line for simplicity
+    public float lift_force_per_rpm;//Ratio of the lift vs rotor rpm. Actually it is a curve but is considered straight line for simplicity
     #endregion //Variables
 
 
@@ -31,7 +31,7 @@ public class MotorController : MonoBehaviour, IEngine
         propeller = GetComponent<Transform>();//Search for the propeller GameObject
     }
 
-    public void set_rotor_speed(Rigidbody rb, int rotor_speed_in_rpm)
+    public void Set_rotor_speed(Rigidbody rb, int rotor_speed_in_rpm)
     {
         //Limit the Rotor speed in a range
         if (rotor_speed_in_rpm > max_motor_speed)
@@ -43,16 +43,16 @@ public class MotorController : MonoBehaviour, IEngine
         float rotor_force = -((rb.mass / 4) * Physics.gravity.magnitude) + (rotor_speed_in_rpm * lift_force_per_rpm);
         if (rotor_force < 0)
             rotor_force = 0;
-        set_motor_rotation_speed(rb, rotor_force, rotor_speed_in_rpm);
+        Set_motor_rotation_speed(rb, rotor_force, rotor_speed_in_rpm);
     }
 
-    private void set_motor_rotation_speed(Rigidbody rb, float force, int rotor_speed_in_rpm)
+    private void Set_motor_rotation_speed(Rigidbody rb, float force, int rotor_speed_in_rpm)
     {
         if (!propeller)
             return;
 
         //Apply Rotor force and generate the rotation for animation
-        Vector3 rotor_force = new Vector3(0, force, 0);
+        Vector3 rotor_force = new(0, force, 0);
         rb.AddRelativeForce(rotor_force, ForceMode.Force);
         propeller.Rotate(Vector3.up, rotor_speed_in_rpm);
     }

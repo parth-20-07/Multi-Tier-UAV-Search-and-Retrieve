@@ -9,5 +9,5 @@ public interface IEngine
      * to write the implementation of the essential functions for proper functioning of a motor
      * in simulation and force production
      */
-    void set_rotor_speed(Rigidbody rb, int rotor_speed_in_rpm);//Provide implementation for this function
+    void Set_rotor_speed(Rigidbody rb, int rotor_speed_in_rpm);//Provide implementation for this function
 }

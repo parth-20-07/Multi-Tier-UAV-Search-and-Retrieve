@@ -11,8 +11,8 @@ public class DroneRigidBody : MonoBehaviour
     const float g_to_kg = 0.001f;
 
     protected Rigidbody rb;
-    protected float startDrag;
-    protected float AngularDrag;
+    private float startDrag;
+    private float AngularDrag;
     #endregion //Variables
 
     #region MainMethods
