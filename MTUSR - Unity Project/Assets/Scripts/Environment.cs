@@ -9,16 +9,16 @@ public class Environment : MonoBehaviour
     [Header("Obstacle Generator")] [SerializeField]
     private List<GameObject> obstaclePrefabList;
 
-    [SerializeField] [Range(1, 20)] private int obstacleDensity;
+    [SerializeField] [Range(1, 99)] private int obstacleDensity;
     [SerializeField] private GameObject groundObject;
-    Vector3 _groundSize = Vector3.zero;
+    public Vector3 groundSize = Vector3.zero;
+    [SerializeField] private GameObject goalObject;
+
+    private Vector3 _highestDensityPosition;
 
     // Obstacle List
     private List<GameObject> _instantiatedObstacleList;
     public bool environmentInstantiated;
-
-    [Header("Goal Object")] [SerializeField]
-    private GameObject goalObject;
     #endregion
 
     #region Main Methods
@@ -30,14 +30,11 @@ public class Environment : MonoBehaviour
             Debug.LogError("Obstacles not Serialized");
         if (groundObject == null)
             Debug.LogError("Ground Game Object not Serialized");
-        if (goalObject == null)
-            Debug.LogError("Goal Game Object not Serialized");
-
         Vector3 groundScale = groundObject.transform.localScale;
-        _groundSize = new Vector3(9*groundScale.x / 2.0f, groundScale.y, 9*groundScale.z / 2.0f);
+        groundSize = new Vector3(9*groundScale.x / 2.0f, groundScale.y, 9*groundScale.z / 2.0f);
 
         InstantiateObstacles();
-        PlaceGoalObject();
+        GenerateHeatMap();
         environmentInstantiated = true;
     }
     #endregion
@@ -49,7 +46,7 @@ public class Environment : MonoBehaviour
         _instantiatedObstacleList = new List<GameObject>();
         Vector3 obstacleSize = new Vector3(300,0,200);
         int maxObstacleCount =
-            (int)(((2 * _groundSize.x * 2 * _groundSize.z) / (obstacleSize.x * obstacleSize.z))*(obstacleDensity/100.0f));
+            (int)(((2 * groundSize.x * 2 * groundSize.z) / (obstacleSize.x * obstacleSize.z))*(obstacleDensity/100.0f));
         for (int i = 0; i < maxObstacleCount; i++)
         {
             var position = GetRandomLocation();
@@ -60,30 +57,11 @@ public class Environment : MonoBehaviour
         }
     }
 
-    private void PlaceGoalObject()
-    {
-        bool objectPlaced = false;
-        Vector3 goalBoxSize = goalObject.GetComponent<BoxCollider>().bounds.size;
-            goalBoxSize = new Vector3 (goalBoxSize.x/3.0f,goalBoxSize.y/3.0f,goalBoxSize.z/3.0f);
-            goalBoxSize -= new Vector3(1.0f, 1.0f, 1.0f);
-        while (!objectPlaced)
-        {
-            Vector3 location = GetRandomLocation();
-            location.y = goalObject.transform.position.y;
-            if (!Physics.CheckBox(location, goalBoxSize))
-            {
-                goalObject.transform.position = location;
-                objectPlaced = true;
-            }
-        }
-    }
-
-
     private Vector3 GetRandomLocation()
     {
         var rnd = new System.Random();
-        int x = rnd.Next((int)-_groundSize.x, (int)_groundSize.x);
-        int z = rnd.Next((int)-_groundSize.z, (int)_groundSize.z);
+        int x = rnd.Next((int)-groundSize.x, (int)groundSize.x);
+        int z = rnd.Next((int)-groundSize.z, (int)groundSize.z);
         return new Vector3(x, 1, z);
     }
 
@@ -98,6 +76,40 @@ public class Environment : MonoBehaviour
         }
 
         return allCollidersInField;
+    }
+    
+    private void GenerateHeatMap()
+    {
+        int highestDensityCount = 0;
+
+        int rayLength = (int)Mathf.Pow(50.0f,2.0f);
+        for (int x = -(int)groundSize.x; x < (int)groundSize.x; x += 100)
+        {
+            for (int z = -(int)groundSize.z; z < (int)groundSize.z; z += 100)
+            {
+                int densityCount = 0;
+                Vector3 origin = new(x, 200, z);
+                foreach (var obstacle in _instantiatedObstacleList)
+                {
+                    var distance = (origin - obstacle.transform.position).magnitude;
+                    if (distance < rayLength)
+                        densityCount++;
+                }
+
+                if (densityCount > highestDensityCount)
+                {
+                    highestDensityCount = densityCount;
+                    _highestDensityPosition = origin;
+                }
+            }
+        }
+        Debug.Log("Highest Density Position: "+ _highestDensityPosition);
+        goalObject.transform.position = new Vector3(_highestDensityPosition.x, 50, _highestDensityPosition.z);
+    }
+
+    public Vector3 GetGoalSearchPosition()
+    {
+        return this._highestDensityPosition;
     }
     #endregion
 }

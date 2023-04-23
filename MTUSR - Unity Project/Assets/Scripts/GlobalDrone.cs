@@ -12,11 +12,15 @@ public class GlobalDrone : MonoBehaviour
     [SerializeField] private Vector3 goalPosition;
     [SerializeField] private GameObject droneObject;
     [SerializeField] private Material selectionMaterial;
-    private bool _endGoalFound, _pathFound;
+    [SerializeField] private DroneAnimation droneAnimator;
+
+    private bool _endGoalFound, _pathFound, _pathRetraced;
+    public bool heatMapDeveloped;
     [SerializeField] private float maxDroneSpeed;
     private Vector3 _droneHalfCollider;
-
     private const float MoveDistance = 100.0f;
+    Vector3 _highestDensityPosition;
+    [SerializeField] private Environment environment;
 
     private readonly List<Vector3> _neighborPositionsToScan = new List<Vector3>()
     {
@@ -72,11 +76,11 @@ public class GlobalDrone : MonoBehaviour
             _nodeGameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             _nodeGameObject.transform.position = position;
             _nodeGameObject.transform.parent = parentTransform;
-            
+
             Destroy(_nodeGameObject.GetComponent<SphereCollider>());
-            
+
             _parentNode = parent;
-            
+
 
             if (parent != null)
             {
@@ -120,16 +124,16 @@ public class GlobalDrone : MonoBehaviour
             _nodeGameObject.transform.localScale = new Vector3(50.0f, 50.0f, 50.0f);
             _nodeGameObject.GetComponent<MeshRenderer>().material = selectionMaterial;
             var edge = _nodeGameObject.GetComponent<LineRenderer>();
-            if(edge!= null)
+            if (edge != null)
             {
                 edge.widthMultiplier = 4.0f;
                 edge.startColor = selectionMaterial.color;
                 edge.endColor = selectionMaterial.color;
-            }        
+            }
         }
     }
 
-    private List<AStarNode> _openList,_closedList,_nodeList, _travelPath;
+    private List<AStarNode> _openList, _closedList, _nodeList, _travelPath;
 
     #endregion
 
@@ -151,12 +155,14 @@ public class GlobalDrone : MonoBehaviour
         _openList.Add(startNode);
         _nodeList.Add(startNode);
 
-        _droneHalfCollider = (droneObject.GameObject().GetComponent<BoxCollider>().size) / 2.0f;
+        _droneHalfCollider =
+            (droneObject.transform.localScale.x * droneObject.GameObject().GetComponent<BoxCollider>().size) / 2.0f;
+        Destroy(droneObject.GameObject().GetComponent<BoxCollider>());
     }
 
     void Update()
     {
-        if (!_endGoalFound)
+        if (!_endGoalFound && environment.environmentInstantiated)
         {
             if (_openList.Count != 0)
             {
@@ -209,7 +215,7 @@ public class GlobalDrone : MonoBehaviour
             }
         }
 
-        if (_endGoalFound&& !_pathFound)
+        if (_endGoalFound && !_pathFound)
         {
             _travelPath = new List<AStarNode>();
 
@@ -224,6 +230,11 @@ public class GlobalDrone : MonoBehaviour
             _travelPath.Reverse();
             _pathFound = true;
             StartCoroutine(TravelOnPath());
+        }
+        else if (_pathFound && _pathRetraced && !heatMapDeveloped)
+        {
+            _highestDensityPosition = environment.GetGoalSearchPosition();
+            heatMapDeveloped = true;
         }
     }
 
@@ -262,15 +273,27 @@ public class GlobalDrone : MonoBehaviour
         foreach (var neighborPosition in _neighborPositionsToScan)
         {
             Vector3 possiblePosition = position + neighborPosition;
-            if (!Physics.CheckBox(possiblePosition, _droneHalfCollider))
+            bool obstacleInPath = false;
+            for (float t = 0; t < 1; t += 0.1f)
+            {
+                Vector3 interpolatedPosition = Vector3.Lerp(position, possiblePosition, t);
+                if (Physics.CheckBox(interpolatedPosition, _droneHalfCollider))
+                {
+                    obstacleInPath = true;
+                    break;
+                }
+            }
+
+            if (!obstacleInPath)
                 neighbors.Add(possiblePosition);
         }
 
         return neighbors;
     }
-    
+
     private IEnumerator TravelOnPath()
     {
+        droneAnimator.ActivateDrone();
         int i = 0;
         var startNode = _travelPath[0];
         var startPosition = startNode.GetTransform().position;
@@ -293,6 +316,7 @@ public class GlobalDrone : MonoBehaviour
 
                 if (i == _travelPath.Count)
                 {
+                    _pathRetraced = true;
                     StopAllCoroutines();
                     break;
                 }
@@ -307,8 +331,16 @@ public class GlobalDrone : MonoBehaviour
                 timeStep = travelDistance / maxDroneSpeed;
                 time = 0.0f;
             }
+
             yield return null;
         }
+    }
+
+
+
+    public Vector3 GetPossibleLocationForGoalObject()
+    {
+        return this._highestDensityPosition;
     }
 
     #endregion

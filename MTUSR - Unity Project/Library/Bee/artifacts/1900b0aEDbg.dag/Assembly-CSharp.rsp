@@ -350,6 +350,7 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/DroneAnimation.cs"
 "Assets/Scripts/DroneController.cs"
 "Assets/Scripts/DroneRigidBody.cs"
 "Assets/Scripts/Environment.cs"
@@ -357,6 +358,7 @@
 "Assets/Scripts/Interfaces/IEngine.cs"
 "Assets/Scripts/MasterController.cs"
 "Assets/Scripts/MotorController.cs"
+"Assets/Scripts/SearchDrone.cs"
 -langversion:9.0
 
 /deterministic
