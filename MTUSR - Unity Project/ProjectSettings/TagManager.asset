@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - search
+  - topviewpov
   layers:
   - Default
   - TransparentFX

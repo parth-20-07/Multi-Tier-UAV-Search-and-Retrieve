@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 1797760339730403953, guid: 1f5dab4a4cb74de488b4c791e4312d4c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 21336b13e2ebfc04eb4dacf90dc72a84, type: 2}
+      objectReference: {fileID: 2100000, guid: cc9145225f763a3428ef4a629531bf87, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f5dab4a4cb74de488b4c791e4312d4c, type: 3}
 --- !u!1 &4274430422692117063 stripped
@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: -3855335175272487014, guid: 8e68a3c9474c705499032dd10fca6e68, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 75fe21d3f0cdf5943bbe75f89d583107, type: 2}
+      objectReference: {fileID: 2100000, guid: 8c7d505cd3628e840a1de2f1fa7f73cc, type: 2}
     - target: {fileID: 919132149155446097, guid: 8e68a3c9474c705499032dd10fca6e68, type: 3}
       propertyPath: m_Name
       value: Tetromino I v3_Tetromino I v3_Body1
