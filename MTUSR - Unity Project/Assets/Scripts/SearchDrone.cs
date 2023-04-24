@@ -10,11 +10,14 @@ public class SearchDrone : MonoBehaviour
     [SerializeField] private GameObject droneObject;
     [SerializeField] private DroneAnimation droneAnimator;
     [SerializeField] private GlobalDrone globalDroneCommunication;
+    [SerializeField] private RetrieveDrone retrieveDroneCommunication;
+    
+    [SerializeField] private Material pathMaterial;
 
     private Vector3 _goalPosition;
     [SerializeField] private float maxDroneSpeed;
 
-    private bool _goalPositionFetched, _pathDeveloped, _motionStarted, _pathRetraced;
+    private bool _goalPositionFetched, _pathDeveloped, _motionStarted;
 
     private readonly float _gapHeight = 50.0f;
     private readonly float _gapLength = 100.0f;
@@ -22,34 +25,32 @@ public class SearchDrone : MonoBehaviour
     class AddNodeToPath
     {
         private readonly GameObject _node;
-        private readonly AddNodeToPath _parentNode;
 
-        public AddNodeToPath(Vector3 position, AddNodeToPath parent, Transform parentTransform)
+        public AddNodeToPath(Vector3 position, AddNodeToPath parent, Transform parentTransform, Material nodeMaterial)
         {
             _node = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            _node.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
             _node.transform.position = position;
             _node.transform.parent = parentTransform;
+            _node.layer = 0;
+            _node.GetComponent<MeshRenderer>().material = nodeMaterial;
 
-            _parentNode = parent;
+            var parentNode = parent;
 
-            if (_parentNode != null)
+            if (parentNode != null)
             {
                 LineRenderer edge = _node.AddComponent<LineRenderer>();
+                edge.material = nodeMaterial;
                 edge.widthMultiplier = 0.5f;
                 edge.positionCount = 2;
                 edge.SetPosition(0, _node.transform.position);
-                edge.SetPosition(1, _parentNode.GetTransform().position);
+                edge.SetPosition(1, parentNode.GetTransform().position);
             }
         }
 
         public Transform GetTransform()
         {
             return _node.transform;
-        }
-
-        public AddNodeToPath GetParent()
-        {
-            return _parentNode;
         }
     }
 
@@ -62,7 +63,7 @@ public class SearchDrone : MonoBehaviour
     private void Start()
     {
         _path = new List<AddNodeToPath>();
-        AddNodeToPath startNode = new AddNodeToPath(droneObject.transform.position, null, this.transform);
+        AddNodeToPath startNode = new AddNodeToPath(droneObject.transform.position, null, this.transform,pathMaterial);
         _path.Add(startNode);
     }
 
@@ -71,6 +72,7 @@ public class SearchDrone : MonoBehaviour
         if (!_goalPositionFetched && globalDroneCommunication.heatMapDeveloped)
         {
             _goalPosition = globalDroneCommunication.GetPossibleLocationForGoalObject();
+            _goalPosition.y += 150.0f;
             _goalPositionFetched = true;
         }
         else if (_goalPositionFetched && !_pathDeveloped)
@@ -86,7 +88,7 @@ public class SearchDrone : MonoBehaviour
                 if (!RerouteForObstacleInFront(position))
                 {
                     time += (1 / timeStep);
-                    AddNodeToPath node = new AddNodeToPath(position, _path.Last(), this.transform);
+                    AddNodeToPath node = new AddNodeToPath(position, _path.Last(), this.transform,pathMaterial);
                     _path.Add(node);
                 }
                 else
@@ -102,8 +104,6 @@ public class SearchDrone : MonoBehaviour
             StartCoroutine(TravelOnPath());
             _motionStarted = true;
         }
-        else if (_motionStarted && _pathRetraced)
-            Debug.Log("Path Completed");
     }
 
     #endregion
@@ -113,11 +113,11 @@ public class SearchDrone : MonoBehaviour
     private bool RerouteForObstacleInFront(Vector3 origin)
     {
         int rotationAngle = 10;
-        float detectionDistance = _gapLength/2.0f;
+        float detectionDistance = _gapLength / 2.0f;
 
         var forward = (_goalPosition - droneObject.transform.position).normalized;
         var up = droneObject.transform.up;
-        var right = Quaternion.AngleAxis(90,up).eulerAngles;
+        var right = Quaternion.AngleAxis(90, up).eulerAngles;
 
         Vector3 centerRayDirection = forward;
         Vector3 leftRayDirection = Quaternion.AngleAxis(-rotationAngle, up) * centerRayDirection;
@@ -191,7 +191,7 @@ public class SearchDrone : MonoBehaviour
             while (timeCounter < timeStep)
             {
                 Vector3 position = Vector3.Lerp(startPoint, midPoint, timeCounter);
-                AddNodeToPath node = new AddNodeToPath(position, _path.Last(), this.transform);
+                AddNodeToPath node = new AddNodeToPath(position, _path.Last(), this.transform,pathMaterial);
                 _path.Add(node);
                 timeCounter += 0.1f * timeStep;
             }
@@ -200,7 +200,7 @@ public class SearchDrone : MonoBehaviour
             while (timeCounter < timeStep)
             {
                 Vector3 position = Vector3.Lerp(midPoint, endPoint, timeCounter);
-                AddNodeToPath node = new AddNodeToPath(position, _path.Last(), this.transform);
+                AddNodeToPath node = new AddNodeToPath(position, _path.Last(), this.transform,pathMaterial);
                 _path.Add(node);
                 timeCounter += 0.1f * timeStep;
             }
@@ -229,6 +229,7 @@ public class SearchDrone : MonoBehaviour
         {
             Vector3 position = Vector3.Lerp(startPosition, nextPosition, time);
             droneObject.transform.position = position;
+
             time += (1 / timeStep);
             if (time >= 1.0f)
             {
@@ -236,7 +237,8 @@ public class SearchDrone : MonoBehaviour
 
                 if (i == _path.Count)
                 {
-                    _pathRetraced = true;
+                    _goalPosition.y -= 50.0f;
+                    retrieveDroneCommunication.RetrieveGoalObject(_goalPosition);
                     StopAllCoroutines();
                     break;
                 }

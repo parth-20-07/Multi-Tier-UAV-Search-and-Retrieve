@@ -14,8 +14,6 @@ public class Environment : MonoBehaviour
     public Vector3 groundSize = Vector3.zero;
     [SerializeField] private GameObject goalObject;
 
-    private Vector3 _highestDensityPosition;
-
     // Obstacle List
     private List<GameObject> _instantiatedObstacleList;
     public bool environmentInstantiated;
@@ -81,6 +79,7 @@ public class Environment : MonoBehaviour
     private void GenerateHeatMap()
     {
         int highestDensityCount = 0;
+        Vector3 highestDensityPosition = Vector3.zero;
 
         int rayLength = (int)Mathf.Pow(50.0f,2.0f);
         for (int x = -(int)groundSize.x; x < (int)groundSize.x; x += 100)
@@ -99,17 +98,16 @@ public class Environment : MonoBehaviour
                 if (densityCount > highestDensityCount)
                 {
                     highestDensityCount = densityCount;
-                    _highestDensityPosition = origin;
+                    highestDensityPosition = origin;
                 }
             }
         }
-        Debug.Log("Highest Density Position: "+ _highestDensityPosition);
-        goalObject.transform.position = new Vector3(_highestDensityPosition.x, 50, _highestDensityPosition.z);
+        goalObject.transform.position = new Vector3(highestDensityPosition.x, 50, highestDensityPosition.z);
     }
 
     public Vector3 GetGoalSearchPosition()
     {
-        return this._highestDensityPosition;
+        return goalObject.transform.position;
     }
     #endregion
 }

@@ -123,6 +123,231 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &37013890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 37013891}
+  - component: {fileID: 37013892}
+  m_Layer: 0
+  m_Name: Global Drone POV Cam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &37013891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37013890}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 658485485}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!20 &37013892
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37013890}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 4
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0.4
+    width: 0.3
+    height: 0.3
+  near clip plane: 0.3
+  far clip plane: 5000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5000
+  m_Depth: 99
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 575
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!1 &98957066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 98957067}
+  - component: {fileID: 98957069}
+  m_Layer: 0
+  m_Name: Retrieve Drone Cam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &98957067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98957066}
+  m_LocalRotation: {x: 0.2043494, y: -0, z: 0.00000004470348, w: 0.978898}
+  m_LocalPosition: {x: -0, y: 0.327, z: -1.039}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1821490547}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 23.583, y: 0, z: 0}
+--- !u!20 &98957069
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98957066}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0.7
+    y: 0.7
+    width: 0.3
+    height: 0.3
+  near clip plane: 0.3
+  far clip plane: 10000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 1087
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!1 &217570169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217570170}
+  - component: {fileID: 217570172}
+  m_Layer: 0
+  m_Name: Search Drone Cam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &217570170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217570169}
+  m_LocalRotation: {x: 0.2043494, y: -0, z: 0.00000004470348, w: 0.978898}
+  m_LocalPosition: {x: 0, y: 0.378, z: -1.156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1600743936}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 23.583, y: 0, z: 0}
+--- !u!20 &217570172
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217570169}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0.35
+    y: 0.7
+    width: 0.3
+    height: 0.3
+  near clip plane: 0.3
+  far clip plane: 10000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 100
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 575
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &314888813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100034, guid: 4fc51ba07c3403346acb0eed7d6524bf, type: 3}
@@ -180,7 +405,6 @@ GameObject:
   - component: {fileID: 330902551}
   - component: {fileID: 330902554}
   - component: {fileID: 330902553}
-  - component: {fileID: 330902552}
   m_Layer: 0
   m_Name: Goal Object
   m_TagString: Untagged
@@ -203,19 +427,6 @@ Transform:
   m_Father: {fileID: 1831196562}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &330902552
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330902550}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &330902553
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -275,6 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 413092297}
+  - component: {fileID: 413092298}
   m_Layer: 0
   m_Name: Retrieve Drone
   m_TagString: Untagged
@@ -298,6 +510,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &413092298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413092296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e104004de7a144492d56f4775250ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droneObject: {fileID: 1821490546}
+  goalObject: {fileID: 330902550}
+  droneAnimator: {fileID: 1821490550}
+  selectionMaterial: {fileID: 2100000, guid: 0f24ae12ef8ee3a4ea3315a13b8bf0eb, type: 2}
+  nodeMaterial: {fileID: 2100000, guid: c4e69af59f52e9b4dbe41c2f6389e4bf, type: 2}
+  mappingLayerString: Retrieve Drone Layer
+  heatMapDeveloped: 0
+  maxDroneSpeed: 500
+  environment: {fileID: 1831196563}
 --- !u!114 &568250927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,8 +721,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalPosition: {x: 0, y: 1500, z: 0}
   droneObject: {fileID: 658485481}
-  selectionMaterial: {fileID: 2100000, guid: a228de1bf8c598247bc7ceb7f9072ee5, type: 2}
   droneAnimator: {fileID: 658485488}
+  selectionMaterial: {fileID: 2100000, guid: a228de1bf8c598247bc7ceb7f9072ee5, type: 2}
+  nodeMaterial: {fileID: 2100000, guid: c4e69af59f52e9b4dbe41c2f6389e4bf, type: 2}
+  mappingLayerString: Global Drone Layer
   heatMapDeveloped: 0
   maxDroneSpeed: 1000
   environment: {fileID: 1831196563}
@@ -603,6 +838,38 @@ Transform:
   m_Father: {fileID: 1831196562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &953566540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 953566541}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &953566541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953566540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.478, y: 0.306, z: 0.333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 963194228}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +880,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -621,14 +887,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -653,11 +911,11 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: -100
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -679,14 +937,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.12229768, y: 0.808095, z: -0.18062189, w: -0.547176}
-  m_LocalPosition: {x: 0.478, y: 0.306, z: 0.333}
+  m_LocalRotation: {x: 0.29349825, y: -0.00000014521801, z: 0.000000050912277, w: 0.9559596}
+  m_LocalPosition: {x: -658, y: 5830, z: -8428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 953566541}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.135, y: 0, z: 0}
 --- !u!1 &977436220
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +993,9 @@ MonoBehaviour:
   droneObject: {fileID: 1258122470}
   droneAnimator: {fileID: 1600743937}
   globalDroneCommunication: {fileID: 704351248}
-  maxDroneSpeed: 10000
+  retrieveDroneCommunication: {fileID: 413092298}
+  pathMaterial: {fileID: 2100000, guid: 8fdaed0f534f2f14e8b10e66c333ac2f, type: 2}
+  maxDroneSpeed: 100000
 --- !u!114 &1000198506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,6 +1179,81 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12376785, y: 0.0052512735, z: 0.13770905}
   m_Center: {x: 0.016142704, y: 0.0026256354, z: -0.0027008392}
+--- !u!1 &1552504139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552504140}
+  - component: {fileID: 1552504142}
+  m_Layer: 0
+  m_Name: Global Drone Cam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1552504140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552504139}
+  m_LocalRotation: {x: 0.2043494, y: -0, z: 0.00000004470348, w: 0.978898}
+  m_LocalPosition: {x: 0, y: 0.378, z: -1.156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 658485485}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 23.583, y: 0, z: 0}
+--- !u!20 &1552504142
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552504139}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0.7
+    width: 0.3
+    height: 0.3
+  near clip plane: 0.3
+  far clip plane: 10000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 100
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 319
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!4 &1600743936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 20cd51a5059c7a64484f9f125ee6c40a, type: 3}
@@ -1158,15 +1493,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400038, guid: 4fc51ba07c3403346acb0eed7d6524bf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 400038, guid: 4fc51ba07c3403346acb0eed7d6524bf, type: 3}
       propertyPath: m_LocalScale.y
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 400038, guid: 4fc51ba07c3403346acb0eed7d6524bf, type: 3}
       propertyPath: m_LocalScale.z
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 400038, guid: 4fc51ba07c3403346acb0eed7d6524bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1308,7 +1643,7 @@ MonoBehaviour:
   - {fileID: 2840538498283326071, guid: dabe290841f37ee44b6d96e727f68611, type: 3}
   - {fileID: 5105729240298375850, guid: 9f38d9453624c404481020e65f544078, type: 3}
   - {fileID: 6744096875884722466, guid: 2b22075f9cf87ef4fb24d9c708f748c1, type: 3}
-  obstacleDensity: 79
+  obstacleDensity: 60
   groundObject: {fileID: 1628362497}
   groundSize: {x: 0, y: 0, z: 0}
   goalObject: {fileID: 330902550}
@@ -1366,7 +1701,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b0f0fa09c206f754eb23eb168b6a8b58, type: 2}
+  - {fileID: 2100000, guid: a65c2bb9708e13b49ba833b762e77b74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

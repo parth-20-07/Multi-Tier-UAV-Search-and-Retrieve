@@ -46,7 +46,7 @@ public class DroneAnimation : MonoBehaviour
         {
             foreach (var propeller in propellerList)
             {
-                propeller.transform.Rotate(Vector3.up, 5.0f);
+                propeller.transform.Rotate(Vector3.up, 10.0f);
             }
             yield return null;
         }

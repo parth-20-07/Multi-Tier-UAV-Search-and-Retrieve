@@ -11,9 +11,11 @@ public class GlobalDrone : MonoBehaviour
     // The Global Drone Planner uses A-Star for path planning
     [SerializeField] private Vector3 goalPosition;
     [SerializeField] private GameObject droneObject;
-    [SerializeField] private Material selectionMaterial;
     [SerializeField] private DroneAnimation droneAnimator;
-
+    [SerializeField] private Material selectionMaterial,nodeMaterial;
+    [SerializeField] private string mappingLayerString;
+    private int _mappingLayer;
+    
     private bool _endGoalFound, _pathFound, _pathRetraced;
     public bool heatMapDeveloped;
     [SerializeField] private float maxDroneSpeed;
@@ -71,12 +73,14 @@ public class GlobalDrone : MonoBehaviour
 
         private LineRenderer _edge;
 
-        public AStarNode(Vector3 position, AStarNode parent, Transform parentTransform)
+        public AStarNode(Vector3 position, AStarNode parent, Transform parentTransform, int mappingLayer, Material nodeMaterial)
         {
             _nodeGameObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             _nodeGameObject.transform.position = position;
             _nodeGameObject.transform.parent = parentTransform;
-
+            _nodeGameObject.layer = mappingLayer;
+            _nodeGameObject.GetComponent<MeshRenderer>().material = nodeMaterial;
+            
             Destroy(_nodeGameObject.GetComponent<SphereCollider>());
 
             _parentNode = parent;
@@ -85,6 +89,8 @@ public class GlobalDrone : MonoBehaviour
             if (parent != null)
             {
                 _edge = _nodeGameObject.AddComponent<LineRenderer>();
+                _edge.material = nodeMaterial;
+                _edge.gameObject.layer = mappingLayer;
                 _edge.widthMultiplier = 0.5f;
                 _edge.positionCount = 2;
                 _edge.SetPosition(0, _nodeGameObject.transform.position);
@@ -121,11 +127,15 @@ public class GlobalDrone : MonoBehaviour
 
         public void SelectNodeAsPath(Material selectionMaterial)
         {
-            _nodeGameObject.transform.localScale = new Vector3(50.0f, 50.0f, 50.0f);
+            _nodeGameObject.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
             _nodeGameObject.GetComponent<MeshRenderer>().material = selectionMaterial;
+            _nodeGameObject.layer = 0;
+
             var edge = _nodeGameObject.GetComponent<LineRenderer>();
             if (edge != null)
             {
+                _edge.gameObject.layer = 0;
+                _edge.material = selectionMaterial;
                 edge.widthMultiplier = 4.0f;
                 edge.startColor = selectionMaterial.color;
                 edge.endColor = selectionMaterial.color;
@@ -142,13 +152,14 @@ public class GlobalDrone : MonoBehaviour
     void Start()
     {
         Debug.Log("Finding Path to Center of Field");
+        _mappingLayer = LayerMask.NameToLayer(mappingLayerString);
 
         _openList = new();
         _closedList = new();
         _nodeList = new();
 
         var position = droneObject.transform.position;
-        AStarNode startNode = new AStarNode(position, null, this.transform);
+        AStarNode startNode = new AStarNode(position, null, this.transform,_mappingLayer,nodeMaterial);
         int gCost, hCost;
         (gCost, hCost) = FindCost(position, position, goalPosition);
         startNode.SetCost(gCost, hCost);
@@ -194,7 +205,7 @@ public class GlobalDrone : MonoBehaviour
 
                 foreach (var neighborPosition in neighborNodes)
                 {
-                    AStarNode node = new AStarNode(neighborPosition, openNode, this.transform);
+                    AStarNode node = new AStarNode(neighborPosition, openNode, this.transform,_mappingLayer,nodeMaterial);
                     int gCost, hCost;
                     (gCost, hCost) = FindCost(openNode.GetTransform().position, neighborPosition, goalPosition);
                     gCost += openNode.GCost;
@@ -210,9 +221,7 @@ public class GlobalDrone : MonoBehaviour
                 }
             }
             else
-            {
                 Debug.LogError("OpenList is empty");
-            }
         }
 
         if (_endGoalFound && !_pathFound)
